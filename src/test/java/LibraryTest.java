@@ -22,24 +22,44 @@ class LibraryTest {
     }
 
     @org.junit.jupiter.api.Test
-    void borrowBook() {
-        library.addUser(seniorStudent);
-        library.addUser(teacher);
-        library.addUser(juniorStudent);
+    void borrowBookOnPriority() {
+
+        library.addUserByPriority(teacher);
+        library.addUserByPriority(juniorStudent);
+        library.addUserByPriority(seniorStudent);
 
         library.addBook(book1,10);
         library.addBook(book2, 20);
         library.addBook(book3, 30);
 
-        library.borrowBook(book2);
-        library.borrowBook(book1);
+        library.borrowBookOnPriority(book2);
+        library.borrowBookOnPriority(book1);
         int book1Left = library.getBooksCollection().get(book1);
         int book2Left = library.getBooksCollection().get(book2);
         int book3Left = library.getBooksCollection().get(book3);
 
-        assertTrue(book1Left ==9);
-        assertTrue(book2Left ==19);
+          assertTrue(book1Left ==9);
+          assertTrue(book2Left ==19);
 //        assertTrue(book3Left==28);
+
+    }
+
+    @org.junit.jupiter.api.Test
+    void borrowBookOnFCFS() {
+        library.addUserByFCFS(juniorStudent);
+        library.addUserByFCFS(seniorStudent);
+
+        library.addBook(book1,10);
+        library.addBook(book2, 15);
+        library.addBook(book3, 30);
+
+        library.borrowBookOnFCFS(book2);
+
+        int book1Left = library.getBooksCollection().get(book1);
+        int book2Left = library.getBooksCollection().get(book2);
+        int book3Left = library.getBooksCollection().get(book3);
+
+        assertTrue(book2Left ==14);
 
     }
 

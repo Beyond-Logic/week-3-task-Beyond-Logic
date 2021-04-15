@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args)
      {
 
-         System.out.println("\nWelcome to Lucid Library.\nBooks are given on the base of the Person level\n\n");
+         System.out.println("\nWelcome to Lucid Library.\n");
 
          //Persons
 
@@ -43,13 +43,16 @@ public class Main {
 
 
          if(rankOne.equalsIgnoreCase("teacher")) {
-             library.addUser(teacher);
+             library.addUserByPriority(teacher);
+             library.addUserByFCFS(teacher);
          }
          if(rankOne.equalsIgnoreCase("senior Student")){
-             library.addUser(seniorStudent);
+             library.addUserByPriority(seniorStudent);
+             library.addUserByFCFS(seniorStudent);
          }
          if(rankOne.equalsIgnoreCase("junior Student")){
-             library.addUser(juniorStudent);
+             library.addUserByPriority(juniorStudent);
+             library.addUserByFCFS(juniorStudent);
 
          }
 
@@ -58,41 +61,61 @@ public class Main {
          String rankTwo = personTwoRank.nextLine();  // Read user input
 
          if(rankTwo.equalsIgnoreCase("teacher")) {
-             library.addUser(teacher);
+             library.addUserByPriority(teacher);
+             library.addUserByFCFS(teacher);
          }
          if(rankTwo.equalsIgnoreCase("senior Student")){
-             library.addUser(seniorStudent);
+             library.addUserByPriority(seniorStudent);
+             library.addUserByFCFS(seniorStudent);
          }
          if(rankTwo.equalsIgnoreCase("junior Student")){
-             library.addUser(juniorStudent);
+             library.addUserByPriority(juniorStudent);
+             library.addUserByFCFS(juniorStudent);
 
          }
+
+         Scanner personThreeRank = new Scanner(System.in);  // Create a Scanner object
+         System.out.println("Please Enter Person Three Rank");
+         String rankThree = personThreeRank.nextLine();  // Read user input
+
+         if(rankThree.equalsIgnoreCase("teacher")) {
+             library.addUserByPriority(teacher);
+             library.addUserByFCFS(teacher);
+         }
+         if(rankThree.equalsIgnoreCase("senior Student")){
+             library.addUserByPriority(seniorStudent);
+             library.addUserByFCFS(seniorStudent);
+         }
+         if(rankThree.equalsIgnoreCase("junior Student")){
+             library.addUserByPriority(juniorStudent);
+             library.addUserByFCFS(juniorStudent);
+
+         }
+
 
          Scanner book = new Scanner(System.in);  // Create a Scanner object
          System.out.println("Please Enter Book to Borrow");
          String bookName = book.nextLine();  // Read user input
 
          if(bookName.equalsIgnoreCase("book1")){
-             library.borrowBook(book1);
+             library.borrowBookOnPriority(book1);
+             library.borrowBookOnFCFS(book1);
          }
 
          if(bookName.equalsIgnoreCase("book2")){
-             library.borrowBook(book2);
+             library.borrowBookOnPriority(book2);
+             library.borrowBookOnFCFS(book2);
          }
 
          if(bookName.equalsIgnoreCase("book3")){
-             library.borrowBook(book3);
+             library.borrowBookOnPriority(book3);
+             library.borrowBookOnFCFS(book3);
          }
-
-
-
-
-
-
-
 
 
 
 
 }
+
+
 }

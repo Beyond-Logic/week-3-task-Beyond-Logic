@@ -5,12 +5,14 @@ public class Person {
     private int level;
     private String rank;
 
+
     // Persons constructors
 
     public Person(String name, int level, String rank ) {
         this.name = name;
         this.level = level;
         this.rank = rank;
+
     }
 
 
@@ -28,9 +30,6 @@ public class Person {
     public String getRank() {
         return rank;
     }
-
-
-
 
 }
 

@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 import Model.Book;
 import Model.Person;
@@ -6,10 +7,15 @@ import Model.Person;
 public class Library {
 
     private Map<Book, Integer> booksCollection = new HashMap<>();
-    private Queue<Person> personQueue = new PriorityQueue<>(Comparator.comparingInt(person -> person.getLevel()));
+    private Queue<Person> personPriority = new PriorityQueue<>(Comparator.comparingInt(person -> person.getLevel()));
+    private Queue<Person> personFCFS = new ConcurrentLinkedQueue<>();
 
-    public void addUser(Person person){
-        personQueue.add(person);
+    public void addUserByPriority(Person person){
+        personPriority.add(person);
+    }
+
+    public void addUserByFCFS(Person person) {
+        personFCFS.add(person);
     }
 
     public boolean addBook(Book book, int copy) {
@@ -24,15 +30,27 @@ public class Library {
 
     public Library() {
         this.booksCollection = booksCollection;
-        this.personQueue = personQueue;
+        this.personPriority = personPriority;
+        this.personFCFS = personFCFS;
     }
 
 
-    public boolean borrowBook(Book book){
+
+    public boolean borrowBookOnPriority(Book book){
         if (booksCollection.containsKey(book)){
             int newCopy = booksCollection.get(book)-1;
             booksCollection.put(book,newCopy);
-            System.out.println("The Book: " + " ' " + book.getTitle() + " ' " +  " has been given to the "+ personQueue.poll().getRank());
+                System.out.println("\n The Book: " + "'" + book.getTitle() + "'" +  " has been given to the "+ personPriority.poll().getRank() + " Base on PRIORITY. \n");
+                return true;
+        }
+        return false;
+    }
+
+    public boolean borrowBookOnFCFS(Book book){
+        if (booksCollection.containsKey(book)){
+            int newCopy = booksCollection.get(book)-1;
+            booksCollection.put(book,newCopy);
+            System.out.println("\n The Book: " + "'" + book.getTitle() + "'" +  " has been given to the "+ personFCFS.poll().getRank() + " Base on FIRST COME FIRST SERVE. ");
             return true;
         }
         return false;
@@ -43,6 +61,12 @@ public class Library {
     }
 
     public Queue<Person> getPersonQueue() {
-        return personQueue;
+        return personPriority;
     }
+
+    public Queue<Person> getPersonFCFS() {
+        return personFCFS;
+    }
+
+
 }
